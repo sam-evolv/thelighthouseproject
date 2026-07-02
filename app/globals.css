@@ -566,9 +566,9 @@
   .sky-hintdrag{font-size:11.5px;color:#7E8DA3;letter-spacing:.04em}
 
   /* Share overlay */
-  .share-ov{position:fixed;inset:0;z-index:240;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;perspective:1200px;background:rgba(6,12,22,.88);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
+  .share-ov{position:fixed;inset:0;z-index:240;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;overflow-y:auto;perspective:1200px;background:rgba(6,12,22,.88);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s}
   .share-ov.open{opacity:1;visibility:visible}
-  .share-card{width:min(370px,86vw);aspect-ratio:4/5;border-radius:22px;overflow:hidden;position:relative;isolation:isolate;background:radial-gradient(125% 95% at 50% -8%,#243a5e 0%,#15243f 38%,var(--night) 70%,var(--night-deep) 100%);box-shadow:0 40px 90px rgba(0,0,0,.62),0 0 0 1px rgba(240,185,95,.18);transform:scale(.94);transition:transform .45s var(--ease)}
+  .share-card{width:min(370px,86vw);aspect-ratio:4/5;flex:none;border-radius:22px;overflow:hidden;position:relative;isolation:isolate;background:radial-gradient(125% 95% at 50% -8%,#243a5e 0%,#15243f 38%,var(--night) 70%,var(--night-deep) 100%);box-shadow:0 40px 90px rgba(0,0,0,.62),0 0 0 1px rgba(240,185,95,.18);transform:scale(.94);transition:transform .45s var(--ease)}
   .share-ov.open .share-card{transform:scale(1);animation:cardIn .6s var(--ease) both}
   @keyframes cardIn{0%{transform:scale(.86);opacity:0}100%{transform:scale(1);opacity:1}}
   .share-card .sc-aura{position:absolute;z-index:0;top:-26%;left:50%;transform:translateX(-50%);width:150%;height:70%;background:radial-gradient(55% 60% at 50% 50%,rgba(240,185,95,.4),rgba(240,185,95,.12) 45%,transparent 72%);filter:blur(26px);pointer-events:none}
@@ -611,6 +611,7 @@
     .sky-bar .ttl{order:-1;width:100%;flex-direction:row;align-items:baseline;gap:8px}
     .sky-search input{width:100%}
     .sky-search{flex:1}
+    .share-ov{justify-content:flex-start;gap:18px;padding:66px 20px 34px}
   }
   @media (prefers-reduced-motion:reduce){
     .sky-star.born,.share-ov.open .share-card,.share-card .sc-rays{animation:none}
@@ -765,6 +766,10 @@
   .gift{margin-top:22px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(22,36,58,.05)}
   .gift-intent{display:inline-flex;gap:4px;background:var(--porcelain);border:1px solid var(--line);border-radius:99px;padding:4px;margin-bottom:18px}
   .gi{appearance:none;border:0;cursor:pointer;font-family:var(--font-body);font-size:13.5px;font-weight:600;color:var(--ink-soft);background:transparent;white-space:nowrap;padding:9px 16px;border-radius:99px;transition:background .2s,color .2s}
+  @media(max-width:620px){
+    .gift-intent{display:flex;max-width:100%}
+    .gi{flex:1;min-width:0;white-space:normal;padding:9px 10px}
+  }
   .gi.on{background:var(--ink);color:#F5F1E7}
   .gift-fields{display:flex;flex-direction:column;gap:14px;margin-bottom:18px}
   .fld{display:flex;flex-direction:column;gap:6px}
