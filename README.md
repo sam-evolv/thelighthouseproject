@@ -34,7 +34,7 @@ GitHub Actions runs lint, registry/link tests, a production dependency audit,
 the production build and the browser suite on pushes and pull requests.
 No deployment credentials are needed for these checks.
 
-Verified on 10 November 2026: production build, lint, 5 registry tests and
+Verified on 10 November 2026: production build, lint, 8 registry/text tests and
 33 browser checks across desktop, phone and tablet passed. Automated axe
 scans across the homepage, sky, confirmation, share card and Story reported
 no WCAG A/AA violations in the tested states. The dependency audit reported
@@ -81,6 +81,11 @@ Social previews use a bundled, licensed serif font and local artwork. Emoji
 are omitted from link-preview images; text outside that font's supported
 range receives a generic image caption. The actual star page, metadata and
 Story retain the original dedication.
+
+Vercel-protected previews still require a Vercel login or a deliberately shared
+review link. When opened through a public Vercel review link, new gift links
+retain that same time-limited review grant. They do not forward other query
+parameters. Production gift links need a public production domain.
 
 ## Implementation
 

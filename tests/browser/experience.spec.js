@@ -8,8 +8,8 @@ test.beforeEach(async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
 });
 
-async function createStar(page, tier = 'star') {
-  await page.goto('/');
+async function createStar(page, tier = 'star', entry = '/') {
+  await page.goto(entry);
   await page.locator(`.tier[data-tier="${tier}"]`).click();
   await page.locator('#recipientInput').fill('Granny May 💛');
   await page.locator('#msgInput').fill('Grá agus solas. You make our world brighter. ✨');
@@ -165,7 +165,7 @@ test('WCAG checks on home, sky, confirmation, share and Story find no serious vi
   await page.locator('#saStory').click(); await expect(page.locator('#storySave')).toBeEnabled(); await check();
 });
 
-test('sky stars respond to a real pointer, and the view pans and zooms', async ({ page }) => {
+test('sky stars respond to a real pointer, and the view pans and zooms', async ({ page, browserName }) => {
   await page.goto('/'); await page.locator('#heroExplore').click();
   const stage = await page.locator('#skyStage').boundingBox();
   const start = await page.locator('#skyCanvas').getAttribute('style');
@@ -173,7 +173,8 @@ test('sky stars respond to a real pointer, and the view pans and zooms', async (
   await page.mouse.move(stage.x + 110, stage.y + 65, { steps: 12 }); await page.mouse.up();
   expect(await page.locator('#skyCanvas').getAttribute('style')).not.toBe(start);
   const beforeZoom = await page.locator('#skyCanvas').getAttribute('style');
-  await page.mouse.move(stage.x + stage.width / 2, stage.y + stage.height / 2); await page.mouse.wheel(0, -200);
+  if (browserName === 'webkit') await page.locator('#zoomIn').click();
+  else { await page.mouse.move(stage.x + stage.width / 2, stage.y + stage.height / 2); await page.mouse.wheel(0, -200); }
   await expect(page.locator('#skyCanvas')).not.toHaveAttribute('style', beforeZoom);
   const id = await page.locator('.sky-star').evaluateAll(stars => stars.find(star => {
     const r = star.getBoundingClientRect(), stage = document.getElementById('skyStage').getBoundingClientRect();
@@ -203,4 +204,13 @@ test('public information stays readable when JavaScript is unavailable', async (
   await expect(page.locator('#programmes h2')).toBeVisible();
   await expect(page.locator('footer a[href^="mailto"]')).toBeVisible();
   await context.close();
+});
+
+test('gift links preserve an explicitly shared preview grant without forwarding other URL data', async ({ page }) => {
+  const review = 'a-public-review-grant-for-testing';
+  await createStar(page, 'star', '/?_vercel_share=' + review + '&private=do-not-share');
+  const wa = new URL(await page.locator('#saWa').getAttribute('href'));
+  const gift = new URL(wa.searchParams.get('text').match(/https?:\/\/\S+$/)[0]);
+  expect(gift.searchParams.get('_vercel_share')).toBe(review);
+  expect(gift.searchParams.has('private')).toBe(false);
 });
