@@ -208,9 +208,10 @@ test('public information stays readable when JavaScript is unavailable', async (
 
 test('gift links preserve an explicitly shared preview grant without forwarding other URL data', async ({ page }) => {
   const review = 'a-public-review-grant-for-testing';
-  await createStar(page, 'star', '/?_vercel_share=' + review + '&private=do-not-share');
+  await createStar(page, 'star', '/?review_access=' + review + '&private=do-not-share');
   const wa = new URL(await page.locator('#saWa').getAttribute('href'));
   const gift = new URL(wa.searchParams.get('text').match(/https?:\/\/\S+$/)[0]);
   expect(gift.searchParams.get('_vercel_share')).toBe(review);
+  expect(gift.searchParams.get('review_access')).toBe(review);
   expect(gift.searchParams.has('private')).toBe(false);
 });
