@@ -6,7 +6,7 @@ export default function Footer() {
           <div className="foot-grid">
             <div>
               <a className="brand" href="#top">
-                <img className="brand-mark" src="/assets/logo-mark.png" alt="" />
+                <img decoding="async" width={320} height={434} className="brand-mark" src="/assets/logo-mark.webp" alt="" />
                 <span className="brand-name">The Light House Project</span>
               </a>
               <p className="about">A community organisation in Ballymun, sparking a light in people through music, writing, volunteering and self-development.</p>
@@ -36,7 +36,8 @@ export default function Footer() {
           <div className="foot-bottom">
             <p>The Lighthouse Project Foundation CLG · Ballymun, Dublin</p>
             <div className="foot-links">
-              <a href="#story">Child Safeguarding Statement</a>
+              <a href="/privacy">Privacy</a>
+              <a href="/safeguarding">Safeguarding</a>
               <a href="https://www.thelighthouseprojectfoundation.com/_files/ugd/7775c5_8a5fa639eaac49ae9d70c592738f7fbf.pdf" target="_blank" rel="noopener">Strategic Plan 2025-2029</a>
             </div>
           </div>

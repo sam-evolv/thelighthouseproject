@@ -17,11 +17,13 @@ import CheckoutOverlay from './CheckoutOverlay';
 import Dock from './Dock';
 import Footer from './Footer';
 import Boot from './Boot';
+import StoryOverlay from './StoryOverlay';
 
 export default function Site({ starId = null }) {
   return (
     <>
       <Nav />
+      <main id="mainContent">
       <Hero />
       <Ticker />
       <Wall />
@@ -33,9 +35,11 @@ export default function Site({ starId = null }) {
       <Plan />
       <Gallery />
       <Voices />
+      </main>
       <SkyOverlay />
       <ArriveOverlay />
       <ShareOverlay />
+      <StoryOverlay />
       <CheckoutOverlay />
       <Dock />
       <Footer />

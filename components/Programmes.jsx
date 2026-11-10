@@ -63,7 +63,7 @@ export default function Programmes() {
               <p>Our flagship programme for teens, finishing with a graduation where every young person presents the difference they made. They leave as young leaders for Ballymun.</p>
               <a className="btn btn-primary btn-lg" href="https://wa.me/353870669858" target="_blank" rel="noopener">Volunteer with us<span className="arr">→</span></a>
             </div>
-            <div className="photo-slot"><img src="/assets/community-3.jpg" alt="Young people at a Light House Project celebration" /></div>
+            <div className="photo-slot"><img loading="lazy" decoding="async" width={1148} height={2048} src="/assets/community-3.webp" alt="Young people at a Light House Project celebration" /></div>
           </div>
         </div>
       </section>

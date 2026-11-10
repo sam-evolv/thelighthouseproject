@@ -15,3 +15,5 @@ npm-debug.log*
 
 # vercel
 .vercel
+/playwright-report/
+/test-results/

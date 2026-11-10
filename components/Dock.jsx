@@ -9,7 +9,7 @@ export default function Dock() {
         </span>
         <span className="dock-txt">
           <b>Light a light</b>
-          <span><b id="dockCount">412</b> lit · from &euro;5</span>
+          <span>A little love, written in light</span>
         </span>
         <span className="dock-cta" aria-hidden="true">→</span>
       </a>
