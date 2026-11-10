@@ -5,22 +5,24 @@ export default function SkyOverlay() {
         <div className="sky-bar">
           <div className="ttl">
             <b>The Wall of Light</b>
-            <span><b id="skyCount">412</b> named stars · every one burns forever</span>
+            <span><b id="skyCount">34</b> example lights · a sky made of stories</span>
           </div>
           <div className="sky-search">
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
             <input id="skySearch" type="search" placeholder="Search a name or message..." aria-label="Search the wall of light" />
+            <span className="search-feedback" id="skySearchFeedback" role="status"></span>
           </div>
           <button className="sky-close" id="skyClose" type="button" aria-label="Close the wall of light">
             <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg>
           </button>
         </div>
         <div className="sky-stage" id="skyStage">
-          <div className="sky-title" id="skyTitle" aria-hidden="true"><b>The Ballymun sky</b><span>Every light here is somebody&rsquo;s someone</span></div>
+          <div className="sky-title" id="skyTitle" aria-hidden="true"><span>A little love, written in light</span><b>Everybody is<br /><em>somebody&rsquo;s someone.</em></b><small>Choose a star. Discover its story.</small></div>
           <div className="sky-canvas" id="skyCanvas">
             <div className="sky-bgstars" id="skyBg"></div>
           </div>
           <div className="sky-card" id="skyCard" role="status">
+            <button className="sky-card-close" id="skyCardClose" type="button" aria-label="Close dedication">×</button>
             <p className="sc-tier" id="skyCardTier"></p>
             <p className="sc-msg" id="skyCardMsg"></p>
             <div className="sc-meta">
@@ -49,12 +51,12 @@ export default function SkyOverlay() {
         <div className="sky-foot">
           <span className="forever">
             <svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.2 1 2.5h6c0-1.3.3-1.8 1-2.5A6 6 0 0 0 12 3Z"></path><path d="M9 19h6M10 22h4"></path></svg>
-            Every light here burns forever
+            A preview of a brighter Ballymun
           </span>
           <span className="sky-hintdrag">Drag to move · scroll or pinch to zoom · tap a star to read it</span>
           <button className="pill-btn" type="button" id="skyDrift" title="Let the sky choose a light for you">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M14.8 9.2l-1.6 4-4 1.6 1.6-4Z"></path></svg>
-            Drift
+            Find a story
           </button>
           <button className="btn btn-primary btn-sm" type="button" id="skyLight">Light your own<span className="arr">→</span></button>
         </div>

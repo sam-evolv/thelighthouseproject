@@ -1,82 +1,137 @@
-# The Light House Project — website & The Wall of Light
+# The Light House Project — The Wall of Light
 
-Production build of the marketing + fundraising website for **The Light House
-Project Foundation** (Ballymun, Dublin), recreated from the high-fidelity
-design handoff. The centrepiece is **The Wall of Light**: supporters pay
-€5–€150 to name a permanent star in a shared night sky over Ballymun. Every
-star gets a name, a registry number and a place in one of six named sky
-regions; buyers get a shareable deed, a gift link that plays a cinematic
-arrival experience, and a downloadable keepsake certificate.
+A Next.js website for the Ballymun community organisation, with an immersive
+Wall of Light, personal star dedications, a gift arrival experience and
+Instagram Story keepsakes.
 
-## Stack
+**Current release: a working preview. Donations are closed.** No card details,
+emails or payments are collected. Example stars are labelled as examples.
+Payment setup and charity registration details were explicitly deferred.
 
-- **Next.js (App Router) + React** — static marketing sections are server
-  components; `/star/[id]` share pages are server-rendered with per-star
-  Open Graph metadata and a generated deed-style OG image (`next/og`).
-- **Global CSS** ported verbatim from the design handoff (single
-  custom-property-themed stylesheet — colors, type, spacing and every
-  animation are design-final and intentionally untouched).
-- **Imperative page engine** (`lib/`) — the hero night scene, the pan/zoom
-  sky, checkout, share deed, arrival experience, certificate canvas and chime
-  are deliberately imperative (canvas-scale DOM work, Web Animations, Web
-  Audio) and run outside React's render cycle. React owns the markup; the
-  engine owns everything that moves. Booted once by `components/Boot.jsx`.
-- **Fonts** via `next/font` (Source Serif 4 + Inter), self-hosted at build.
+## Run and verify
 
-## Run it
+Requires Node.js 24 and npm.
 
 ```bash
-npm install
-npm run dev    # http://localhost:3000
-npm run build && npm start
+npm ci
+npm run dev
 ```
 
-## Layout
-
-```
-app/
-  layout.jsx                    fonts + site metadata
-  page.jsx                      the one-page site
-  globals.css                   the design system, ported verbatim
-  star/[id]/page.jsx            gift-link share page (server-rendered arrival)
-  star/[id]/opengraph-image.jsx deed-style link preview
-components/                     one component per screen section + overlays
-lib/
-  registry.js                   the star registry: seed data, phyllotaxis
-                                placement, sky regions (seeded PRNG so server
-                                and client agree on every star)
-  hero.js                       hero night scene, time-of-day, parallax
-  wall.js                       wall, sky engine, checkout, share, arrival,
-                                keepsake certificate
-  sections.js                   lamps, ticker, dock, reveals, deed tilt
-  boot.js                       single engine entry point
-public/assets/                  imagery from the handoff
+```bash
+npm run lint
+npm test
+npm run build
+npx playwright install chromium
+npm run test:e2e
 ```
 
-## What's real vs. mock
+The browser suite starts a development server when needed. To verify a built
+release, run `npm start` first, or set `TEST_SERVER_COMMAND="npm start"`.
+The optional `PLAYWRIGHT_CHROMIUM_EXECUTABLE` variable selects an installed
+Chromium executable. `TEST_WEBKIT_EXECUTABLE` adds the WebKit mobile project.
 
-- **Checkout is a visual mock** (as designed in the prototype). Wire
-  `openCheckout`/`lightDraft` in `lib/wall.js` to Stripe Checkout or Payment
-  Element for the €5/€15/€50/€150 tiers.
-- **The registry is seeded in code** (`lib/registry.js`). Production needs a
-  stars table + payment reference; new dedications should enter a moderation
-  queue before public display ("gently reviewed" is promised in the UI).
-  Freshly minted stars (`mine0`, …) currently live only in the buyer's
-  session.
-- **Counters** ("412 lights", "burning N nights") should come from the DB.
-- **Emails** (receipt + gift link with the deed attached) are not built.
+GitHub Actions runs lint, registry/link tests, a production dependency audit,
+the production build and the browser suite on pushes and pull requests.
+No deployment credentials are needed for these checks.
 
-## Before launch (flagged in the handoff)
+Verified on 10 November 2026: production build, lint, 8 registry/text tests and
+33 browser checks across desktop, phone and tablet passed. Automated axe
+scans across the homepage, sky, confirmation, share card and Story reported
+no WCAG A/AA violations in the tested states. The dependency audit reported
+zero known vulnerabilities, including development dependencies.
 
-1. **Team photos are hotlinked from the charity's Wix CDN** with face-crop
-   params (`components/Team.jsx`) and fall back to gold initials if they
-   fail. Download and self-host before launch (the CDN was unreachable from
-   the build environment).
-2. **Founding date**: the strategic plan PDF says 2022, the website homepage
-   says January 2024. The site follows the homepage — align the hero, story
-   and days counter once confirmed.
-3. **Impact equivalences** at checkout ("a month of choir for one young
-   voice") are placeholders — replace with figures the charity can stand
-   over (`IMPACT` in `lib/registry.js`).
-4. **Charity registration number** for the footer.
-5. Set `NEXT_PUBLIC_SITE_URL` to the production origin for correct OG URLs.
+A Lighthouse mobile simulation against the local production build scored
+100 for performance, accessibility, best practices and SEO: LCP 1.2 seconds,
+total blocking time 70 ms, and layout shift 0. These are lab measurements,
+not a guarantee of scores on every device, network or deployment.
+
+## The supporter experience
+
+1. Discover the charity and explore a layered night sky.
+2. Choose a Spark, Guiding Star, Beacon or Constellation. Amounts are suggested
+   future donation tiers; today's preview is free.
+3. Write a dedication and see it appear in the live artwork. Constellations
+   accept two to eight names.
+4. Confirm the preview, then watch the star appear in the Wall of Light.
+5. Share a personal gift link through WhatsApp, email, Facebook, copy link or
+   the device's native share menu where available.
+6. Open the gift on another device to see its arrival and find it in the sky.
+7. Save a keepsake or create a 1080 × 1920 Instagram Story, with a QR code
+   pointing to the same star. Instagram posting is manual: save the image,
+   upload it in Instagram and optionally add the star URL with the Link sticker.
+
+Reduced motion, a persisted pause control, touch targets, keyboard navigation,
+modal focus management and no-JavaScript access to charity information are
+included. The sky supports drag, pinch, wheel and button zoom, plus search.
+
+## Preview links and privacy
+
+`/star/p_…` links contain a bounded, validated, base64url-encoded dedication.
+They reproduce the same star without a database or browser storage, so a
+recipient can open a link in a fresh browser. They are **not payment records**
+and never write to a public registry. Never treat a preview link as proof of a
+donation or as approved public content.
+
+Anyone with the link can read its name and message. The data is not encrypted.
+The privacy page explains this and the hosting and sharing boundaries. Star
+pages have `noindex, nofollow`; they are excluded from the sitemap and robots
+allowlist. Names and messages are rendered as text, not HTML.
+
+Social previews use a bundled, licensed serif font and local artwork. Emoji
+are omitted from link-preview images; text outside that font's supported
+range receives a generic image caption. The actual star page, metadata and
+Story retain the original dedication.
+
+Vercel-protected previews still require a Vercel login or a deliberately shared
+review link. When opened through a public Vercel review link, new gift links
+retain that same time-limited review grant. They do not forward other query
+parameters. Production gift links need a public production domain.
+
+## Implementation
+
+- `app/`: pages, metadata images, privacy, safeguarding, robots and sitemap.
+- `components/`: server-rendered sections, dialogs and the small client boot.
+- `lib/registry.js`: deterministic example stars and preview reconstruction.
+- `lib/preview-stars.js`: bounded preview-link encoding and validation.
+- `lib/wall.js`: sky exploration, dedication, reveal and sharing interactions.
+- `lib/starlight.js`: locally painted sky textures, deferred until visible.
+- `lib/story-card.js`: dynamically loaded Story artwork, QR and image export.
+- `lib/social-image.jsx`: self-contained Open Graph image generation.
+- `lib/accessibility.js`: dialog focus, focus restoration and inert backgrounds.
+- `app/experience.css`: the refined star and sharing experience.
+- `tests/`: registry tests and browser journeys, including axe accessibility
+  scans and decoding the QR code from the actual exported PNG.
+
+Team portraits are self-hosted. Community images use compressed WebP variants,
+explicit dimensions, lazy loading and asynchronous decoding. Original source
+assets remain available in the repository. Story/QR code is loaded on demand.
+The production build's initial JavaScript is approximately 121 KB.
+
+Set `NEXT_PUBLIC_SITE_URL` to the final canonical origin before release.
+The current fallback is `https://thelighthouseproject.vercel.app`.
+
+## Before accepting real donations
+
+The visual preview is complete; these are release gates for fundraising:
+
+- Connect the charity's approved payment account. Use hosted checkout; verify
+  amounts server-side and verify webhook signatures, retries and idempotency.
+  Test successful, declined, cancelled and delayed payments in provider test
+  mode. Never publish a star based only on a client redirect.
+- Add a durable star registry and a moderation process. Allocate stable star
+  identifiers and constellation member records after verified payment. Build
+  receipt/recovery delivery and an edit/removal process, with appropriate
+  privacy and retention information.
+- Confirm the registered legal name and charity registration number, the
+  founding date, programme details, quotations, team permissions, donation
+  language and suggested amounts with the charity. Avoid financial impact
+  equivalences or claims about all proceeds until approved.
+- Publish the approved Child Safeguarding Statement. The current safeguarding
+  page offers the charity's contact details; it is not a substitute for the
+  statement. Verify the externally hosted strategic-plan PDF; this environment
+  could not access that host. Social and WhatsApp destinations returned HTTP 200.
+- Confirm the final domain and canonical URL, sender details for real receipts,
+  production error reporting and backups. Check sharing from physical iPhone
+  and Android devices, including Instagram's native upload and Link sticker.
+- Test the final production payment and registry journey before opening
+  donations. The current browser suite intentionally verifies the free preview.

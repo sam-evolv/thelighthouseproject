@@ -1,0 +1,4 @@
+export const metadata = { title: 'Safeguarding · The Light House Project' };
+export default function Safeguarding() {
+  return <main className="legal-shell"><a className="brand" href="/">← The Light House Project</a><p className="section-label">Care for our community</p><h1>Safeguarding.</h1><p>To request The Light House Project&rsquo;s current Child Safeguarding Statement or ask about safeguarding in its programmes, please contact the organisation directly.</p><p><a href="mailto:lighthouseprojectballymun@gmail.com?subject=Child%20Safeguarding%20Statement">Request the Child Safeguarding Statement by email →</a></p><p><a href="tel:+353870669858">Call 087 066 9858</a></p><p>This page provides a contact route. The charity&rsquo;s approved safeguarding statement must be published or linked here before the site launches.</p><p>If someone is in immediate danger in Ireland, call 112 or 999.</p></main>;
+}

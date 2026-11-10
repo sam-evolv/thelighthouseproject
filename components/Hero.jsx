@@ -176,18 +176,18 @@ export default function Hero() {
 
           <div className="hero-copy">
             <p className="eyebrow">The Wall of Light · Ballymun</p>
-            <h1>Light a star that shines <em>forever</em>.</h1>
-            <p className="lede">Name a star for someone you love and it joins the night sky over Ballymun. Numbered, written with your message, and lit forever in support of The Light House Project.</p>
+            <h1>Some people are <em>your light.</em></h1>
+            <p className="lede">Give them a little of it back. Name a star for someone you love in our Ballymun sky. A message for them. A brighter future for our community.</p>
             <div className="cta-row">
               <a className="btn btn-primary btn-lg" href="#wall"><span className="flame"></span>Light your star<span className="arr">→</span></a>
               <button className="btn btn-ghost-night btn-lg" type="button" id="heroExplore">Explore the Wall</button>
             </div>
-            <p className="hero-badge"><span className="flame"></span><strong id="heroCount">412</strong> lights burning forever</p>
-            <p className="trust">Founded by <strong>Caoimhe Lynch</strong> in January 2024 · for hope, for memory, for Ballymun.</p>
+            <p className="hero-badge"><span className="flame"></span>A little light. A lasting connection.</p>
+            <p className="trust">For someone you love. For a community that cares.<br />Discover the Wall of Light · donations opening soon.</p>
           </div>
 
           <div className="tonight quiet" id="tonight" aria-live="polite">
-            <span className="live"></span><span id="tonightText">Checking the timetable...</span>
+            <span className="live"></span><a href="#programmes" id="tonightText">Made of music, kindness &amp; community</a>
           </div>
 
           <span className="verse" id="verse" aria-hidden="true"></span>
@@ -195,11 +195,12 @@ export default function Hero() {
 
           <div className="plaque" aria-hidden="true">
             <b>The Ballymun Light</b>
-            <span>The sky above matches the real time in Ballymun.</span>
-            <span>Solas do Bhaile Munna · burning <b id="daysLit" style={{display:'inline',color:'rgba(240,185,95,.85)'}}>···</b> days and counting</span>
+            <span>A small light can change someone&rsquo;s world.</span>
+            <span>Solas do Bhaile Munna · a light for Ballymun</span>
           </div>
 
           <div className="panel-controls">
+            <button className="motion-toggle" type="button" id="motionToggle" aria-pressed="false">Pause motion</button>
             <div className="skybar" role="group" aria-label="Preview the sky at a different time of day">
               <button data-sky="sky-dawn" aria-label="Dawn" title="Dawn">
                 <svg viewBox="0 0 24 24"><path d="M4 16h16"></path><path d="M7.5 15.5a4.5 4.5 0 0 1 9 0"></path><path d="M12 5.5V8M6.2 8.7l1.5 1.5M17.8 8.7l-1.5 1.5"></path><path d="M9 19.5h6"></path></svg>

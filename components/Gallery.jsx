@@ -8,10 +8,10 @@ export default function Gallery() {
             <h2>Moments from Ballymun.</h2>
           </div>
           <div className="grid reveal">
-            <figure className="big"><img src="/assets/community-1.jpg" alt="Two children smiling over their colouring at Kids Club" style={{objectPosition:'50% 32%'}} /></figure>
-            <figure><img src="/assets/gallery-mentor.png" alt="Mentors and young members celebrating a certificate" style={{objectPosition:'50% 20%'}} /></figure>
-            <figure><img src="/assets/community-2.jpg" alt="Two friends at the sunrise walk" style={{objectPosition:'50% 24%'}} /></figure>
-            <figure className="wide"><img src="/assets/gallery-walk.png" alt="The community gathered at sunrise in the park" style={{objectPosition:'50% 40%'}} /></figure>
+            <figure className="big"><img loading="lazy" decoding="async" width={1200} height={1600} src="/assets/community-1.webp" alt="Two children smiling over their colouring at Kids Club" style={{objectPosition:'50% 32%'}} /></figure>
+            <figure><img loading="lazy" decoding="async" width={258} height={306} src="/assets/gallery-mentor.webp" alt="Mentors and young members celebrating a certificate" style={{objectPosition:'50% 20%'}} /></figure>
+            <figure><img loading="lazy" decoding="async" width={1536} height={2048} src="/assets/community-2.webp" alt="Two friends at the sunrise walk" style={{objectPosition:'50% 24%'}} /></figure>
+            <figure className="wide"><img loading="lazy" decoding="async" width={885} height={201} src="/assets/gallery-walk.webp" alt="The community gathered at sunrise in the park" style={{objectPosition:'50% 40%'}} /></figure>
           </div>
         </div>
       </section>

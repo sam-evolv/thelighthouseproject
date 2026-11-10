@@ -5,7 +5,7 @@ export default function Story() {
         <div className="container">
           <div className="story-inner reveal">
             <div className="story-photo">
-              <img src="/assets/founder.jpg" alt="Caoimhe Lynch, founder of The Light House Project" />
+              <img loading="lazy" decoding="async" width={851} height={1179} src="/assets/founder.webp" alt="Caoimhe Lynch, founder of The Light House Project" />
             </div>
             <div>
               <p className="section-label">From the founder</p>

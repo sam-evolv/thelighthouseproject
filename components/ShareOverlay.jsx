@@ -7,6 +7,7 @@ export default function ShareOverlay() {
           <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"></path></svg>
         </button>
         <p className="share-head" id="shareHead">Your gift is lit. Now send it.</p>
+        <p className="share-preview-label">A preview gift of light · donations opening soon</p>
         <div className="share-card" id="shareCard">
           <div className="sc-aura" aria-hidden="true"></div>
           <div className="sc-stars" id="shareStars" aria-hidden="true"></div>
@@ -19,7 +20,7 @@ export default function ShareOverlay() {
             <p className="sc-eye" id="shareEye">This star is named</p>
             <p className="sc-to" id="shareTo"><b>Mam</b></p>
             <p className="sc-line" id="shareLine">&ldquo;Keep shining.&rdquo;</p>
-            <p className="sc-by" id="shareBy">Named by Anne · forever</p>
+            <p className="sc-by" id="shareBy">A little love, from someone who cares</p>
             <div className="sc-map" id="shareMap" aria-hidden="true">
               <span className="mapbox" id="shareMapBox"><span className="you" id="shareMapYou"></span><span className="ring" id="shareMapRing"></span></span>
               <span className="maptxt"><b id="shareMapTitle">In the Ballymun sky</b><span>Visit it any time. It will be lit.</span></span>
@@ -43,6 +44,7 @@ export default function ShareOverlay() {
           Preview what they&rsquo;ll see
         </button>
         <div className="share-actions">
+          <button className="sa instagram" type="button" id="saStory"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Create an Instagram Story</button>
           <a className="sa wa" id="saWa" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="#25D366"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.1c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.5c-.1.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"></path></svg>
             WhatsApp
