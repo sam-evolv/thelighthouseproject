@@ -17,9 +17,7 @@ export default function SkyOverlay() {
         </div>
         <div className="sky-stage" id="skyStage">
           <div className="sky-title" id="skyTitle" aria-hidden="true"><b>The Ballymun sky</b><span>Every light here is somebody&rsquo;s someone</span></div>
-          <div className="sky-canvas" id="skyCanvas">
-            <div className="sky-bgstars" id="skyBg"></div>
-          </div>
+          <div className="sky-canvas" id="skyCanvas"></div>
           <div className="sky-card" id="skyCard" role="status">
             <p className="sc-tier" id="skyCardTier"></p>
             <p className="sc-msg" id="skyCardMsg"></p>
@@ -51,7 +49,7 @@ export default function SkyOverlay() {
             <svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.2 1 2.5h6c0-1.3.3-1.8 1-2.5A6 6 0 0 0 12 3Z"></path><path d="M9 19h6M10 22h4"></path></svg>
             Every light here burns forever
           </span>
-          <span className="sky-hintdrag">Drag to move · scroll or pinch to zoom · tap a star to read it</span>
+          <span className="sky-hintdrag">Drag to move · pinch or scroll to zoom · tap a star to read it</span>
           <button className="pill-btn" type="button" id="skyDrift" title="Let the sky choose a light for you">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"></circle><path d="M14.8 9.2l-1.6 4-4 1.6 1.6-4Z"></path></svg>
             Drift
